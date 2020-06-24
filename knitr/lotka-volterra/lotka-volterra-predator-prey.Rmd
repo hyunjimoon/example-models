@@ -704,9 +704,9 @@ generated quantities {
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="Plot of expected population orbit for one hundred draws from the posterior.  Each draw represents a different orbit determined by the differential equation system parameters.  Together they provide a sketch of posterior uncertainty for the *expected* population dynamics. If the ODE solutions were extracted per month rather than per year, the resulting plots would appear fairly smooth."}
 ss <- extract(fit)
-df <- data.frame(list(lynx = ss$z[1, 1:12 , 1], hare = ss$z[1, 1:12, 2], draw = 1))
+df <- data.frame(list(lynx = ss$z[1, 1:12 , 2], hare = ss$z[1, 1:12, 1], draw = 1))
 for (m in 2:100) {
-  df <- rbind(df, data.frame(list(lynx = ss$z[m, 1:12 , 1], hare = ss$z[m, 1:12, 2], draw = m)))
+  df <- rbind(df, data.frame(list(lynx = ss$z[m, 1:12 , 2], hare = ss$z[m, 1:12, 1], draw = m)))
 }
 plot <- ggplot(df) +
   geom_vline(xintercept = 0, color = "grey") +
@@ -722,9 +722,9 @@ plot
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="Plot of expected pelt collection orbits for one hundred draws of system parameters from the posterior.  Even if plotted at more fine-grained time intervals, error would remove any apparent smoothness.  Extreme draws as seen here are typical when large values have high error on the multiplicative scale."}
 ss <- extract(fit)
-df <- data.frame(list(lynx = ss$y_rep[1, 1:12 , 1], hare = ss$y_rep[1, 1:12, 2], draw = 1))
+df <- data.frame(list(lynx = ss$y_rep[1, 1:12 , 2], hare = ss$y_rep[1, 1:12, 1], draw = 1))
 for (m in 2:100) {
-  df <- rbind(df, data.frame(list(lynx = ss$y_rep[m, 1:12 , 1], hare = ss$y_rep[m, 1:12, 2], draw = m)))
+  df <- rbind(df, data.frame(list(lynx = ss$y_rep[m, 1:12 , 2], hare = ss$y_rep[m, 1:12, 1], draw = m)))
 }
 plot <- ggplot(df) +
   geom_vline(xintercept = 0, color = "grey") +
